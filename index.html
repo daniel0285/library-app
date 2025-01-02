@@ -9,7 +9,40 @@
 </head>
 
 <body>
-    <h1>Library</h1>
+    <div class="library-page" id="libraryPage">
+        <header>
+            <h1>Library</h1>
+            <button id="addBookBtn">Add Book +</button>
+        </header>
+        <dialog id="addBookModal" class="modal">
+            <h2>New Book</h2>
+            <form action="" id="bookForm">
+                <input type="text" name="title" id="bookTitle" required>
+                <label for="bookTitle">Title</label>
+
+                <input type="text" name="author" id="bookAuthor" required>
+                <label for="bookAuthor">Author</label>
+
+                <input type="number" name="pages" id="totalPages" required>
+                <label for="totalPages">Total Pages</label>
+
+                <input type="checkbox" name="status" id="readStatus">
+                <label for="readStatus">Have you read this book?</label>
+
+                <input type="submit" value="Submit" id="submitBook"></input>
+            </form>
+        </dialog>
+        <main class="book-container" id="book-container">
+            <!-- <article class="book">
+                <h2>Title</h2>
+                <h3>Author</h3>
+                <p>Total Pages</p>
+                <button>Read</button>
+                <button>Delete</button>
+            </article> -->
+        </main>
+    </div>
+
 
     <script src="script.js"></script>
 </body>
