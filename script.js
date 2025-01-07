@@ -155,11 +155,9 @@ const displayLibrary = () => {
   const bookFragment = document.createDocumentFragment();
 
   if (library.length > 0) {
-    bookContainer.classList.add("flex-row");
     populateBookContainer(bookFragment, library);
     bookContainer.appendChild(bookFragment);
   } else {
-    bookContainer.classList.remove("flex-row");
     bookContainer.innerHTML = "<h2>Your library is empty</h2>";
   }
 };

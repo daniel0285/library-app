@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+:root {
+  --txt-clr-1: #0a0a0a;
+  --txt-clr-2: #171717;
+  --bg-clr: #e5e7eb;
+  --library-bg-clr: #e5e7eb;
+  --input-clr: #6b7280;
+  --input-focus-clr: #f5f5f5;
+  --btn-clr: #0a0a0a;
+  --accent-clr-1: #0179ba;
+  --accent-clr-2: #c02020;
+}
+
 html,
 body {
   height: 100%;
@@ -11,7 +23,6 @@ body {
 }
 
 body {
-  background-color: rgb(255, 255, 255);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;
@@ -19,12 +30,12 @@ body {
 
 .flex-col {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column;
 }
 
 .flex-row {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
 }
 
 .center {
@@ -37,16 +48,16 @@ body {
 }
 
 header {
-  padding: 0.8rem;
+  padding: 1rem;
   gap: 0.8rem;
 
   button {
-    outline: none;
+    outline-color: transparent;
     border: none;
     max-width: 25ch;
     padding: 0.5rem;
-    background-color: rgb(0, 0, 0);
-    color: white;
+    background-color: var(--btn-clr);
+    color: var(--bg-clr);
   }
 }
 
@@ -56,7 +67,7 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1rem;
-  border: 2px solid rgb(147, 147, 147);
+  border: 2px solid var(--input-clr);
   border-radius: 10px;
 
   h2 {
@@ -72,10 +83,10 @@ dialog {
     top: 10px;
     right: 10px;
 
-    outline: none;
+    outline-color: transparent;
     border: none;
     font-size: 1.5rem;
-    color: rgb(0, 0, 0);
+    color: var(--btn-clr);
     font-weight: bold;
 
     background: none;
@@ -84,7 +95,7 @@ dialog {
   }
 
   #closeButton:hover {
-    color: rgb(212, 0, 0);
+    color: var(--accent-clr-2);
   }
 }
 
@@ -103,9 +114,9 @@ dialog::backdrop {
 
   input[type="text"],
   input[type="number"] {
-    outline: none;
+    outline-color: transparent;
     border: 2px solid transparent;
-    background-color: rgb(215, 215, 215);
+    background-color: var(--bg-clr);
     border-radius: 10px;
     padding: 0.5rem;
     transition: all 0.3s ease;
@@ -115,12 +126,12 @@ dialog::backdrop {
   input[type="number"]:focus,
   input[type="text"]:valid,
   input[type="number"]:valid {
-    border: 2px solid rgb(0, 130, 182);
-    background-color: rgb(255, 255, 255);
+    border: 2px solid var(--accent-clr-1);
+    background-color: var(--input-focus-clr);
   }
 
   input[type="checkbox"] {
-    accent-color: rgb(0, 130, 182);
+    accent-color: var(--accent-clr-1);
     transform: scale(1.2);
     cursor: pointer;
   }
@@ -128,10 +139,10 @@ dialog::backdrop {
 
 input[type="submit"],
 #addBookBtn {
-  outline: none;
+  outline-color: transparent;
   border: none;
-  background-color: black;
-  color: white;
+  background-color: var(--btn-clr);
+  color: var(--bg-clr);
   font-weight: bold;
   padding: 0.5rem 2rem;
   border-radius: 10px;
@@ -142,18 +153,21 @@ input[type="submit"],
 
 input[type="submit"]:hover,
 #addBookBtn:hover {
-  background-color: rgb(0, 130, 182);
-  color: rgb(255, 255, 255);
+  background-color: var(--accent-clr-1);
+  color: var(--bg-clr);
   cursor: pointer;
 }
 
 .book-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1.5rem;
   flex-grow: 1;
-  gap: 1rem;
 
   padding: 1.5rem;
   width: 100%;
-  background-color: rgb(222, 222, 222);
+  background-color: var(--library-bg-clr);
 
   h2 {
     text-align: center;
@@ -163,18 +177,21 @@ input[type="submit"]:hover,
 .book-item {
   display: flex;
   flex-flow: column;
-  gap: 0.8rem;
+  gap: 0.6rem;
 
-  outline: 2px solid rgb(121, 121, 121);
+  outline: 2px solid var(--input-clr);
   padding: 1rem;
   border-radius: 10px;
-  background-color: #f5f5f5;
+  background-color: var(--input-focus-clr);
+
+  width: 23ch;
   height: max-content;
+
   text-align: center;
 }
 
 .book-item p {
-  color: rgb(69, 69, 69);
+  color: var(--txt-clr-2);
 }
 
 .btn-group {
@@ -183,10 +200,10 @@ input[type="submit"]:hover,
 }
 
 .btn {
-  outline: none;
+  outline-color: transparent;
   border: none;
-  background-color: black;
-  color: white;
+  background-color: var(--btn-clr);
+  color: var(--bg-clr);
   font-weight: bold;
   border-radius: 5px;
   padding: 0.5rem;
@@ -196,9 +213,9 @@ input[type="submit"]:hover,
 }
 
 .status-btn.finished:hover {
-  background-color: rgb(0, 130, 182);
+  background-color: var(--accent-clr-1);
 }
 
 .status-btn.not-finished:hover {
-  background-color: rgb(212, 0, 0);
+  background-color: var(--accent-clr-2);
 }
