@@ -3,22 +3,6 @@ const bookContainer = document.getElementById("book-container");
 const bookForm = document.getElementById("bookForm");
 const addBookModal = document.getElementById("addBookModal");
 
-const library = [];
-
-function Book(title, author, pages, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
-}
-
-const STATUS = {
-  readText: "Finished",
-  notReadText: "Not Finished",
-  readClass: "finished",
-  notReadClass: "not-finished",
-};
-
 libraryPage.addEventListener("click", (e) => {
   if (e.target.id === "addBookBtn") {
     addBookModal.showModal();
@@ -42,6 +26,23 @@ bookForm.addEventListener("submit", (e) => {
   getInputData(e.target);
 });
 
+const STATUS = {
+  readText: "Finished",
+  notReadText: "Not Finished",
+  readClass: "finished",
+  notReadClass: "not-finished",
+};
+
+const library = [];
+class Book {
+  constructor(title, author, pages, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+  }
+}
+
 const getInputData = (form) => {
   const formData = new FormData(form);
   const book = Object.fromEntries(formData);
@@ -64,42 +65,42 @@ const addBookToLibrary = (title, author, pages, readStatus) => {
 };
 
 const deleteBook = (target) => {
-  console.log(target.parentNode);
-
   library.splice(target, 1);
   displayLibrary();
 };
 
 const changeReadStatus = (e) => {
   const book = library[e.target.id];
+  const target = e.target;
 
   if (e.target.textContent === STATUS.notReadText) {
-    book.readStatus = STATUS.readText;
-    e.target.textContent = STATUS.readText;
-    e.target.classList.replace(STATUS.notReadClass, STATUS.readClass);
+    updateButtonAttribute(book, target, STATUS.readText);
+    target.classList.replace(STATUS.notReadClass, STATUS.readClass);
   } else {
-    book.readStatus = STATUS.notReadText;
-    e.target.textContent = STATUS.notReadText;
-    e.target.classList.replace(STATUS.readClass, STATUS.notReadClass);
+    updateButtonAttribute(book, target, STATUS.notReadText);
+    target.classList.replace(STATUS.readClass, STATUS.notReadClass);
   }
+};
+
+const updateButtonAttribute = (book, target, text) => {
+  book.readStatus = text;
+  target.textContent = text;
 };
 
 function createBookElement(elementType, className, text, obj, index) {
   const bookElement = document.createElement(elementType);
   bookElement.textContent = text;
   bookElement.classList.add(className);
-
   let readStatusClass = obj.readStatus;
 
   if (index !== undefined) {
     bookElement.id = index;
   }
 
-  if (readStatusClass === STATUS.notReadText) {
-    readStatusClass = STATUS.notReadClass;
-  } else {
-    readStatusClass = STATUS.readClass;
-  }
+  readStatusClass =
+    readStatusClass === STATUS.notReadText
+      ? (readStatusClass = STATUS.notReadClass)
+      : (readStatusClass = STATUS.readClass);
 
   if (bookElement.classList.contains("status-btn")) {
     bookElement.classList.add(readStatusClass, "btn");
