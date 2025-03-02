@@ -21,6 +21,16 @@ libraryPage.addEventListener("click", (e) => {
   }
 });
 
+bookForm.addEventListener("input", (e) => {
+  if (e.target.id === "totalPages") {
+    if (e.target.validity.rangeUnderflow) {
+      e.target.setCustomValidity("Pages cannot be less than 0");
+    } else {
+      e.target.setCustomValidity("");
+    }
+  }
+});
+
 bookForm.addEventListener("submit", (e) => {
   e.preventDefault();
   getInputData(e.target);

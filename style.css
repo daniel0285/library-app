@@ -136,6 +136,12 @@ dialog::backdrop {
     background-color: var(--input-focus-clr);
   }
 
+  input:user-invalid,
+  input:invalid:focus:not(:placeholder-shown) {
+    border: 2px solid var(--accent-clr-2);
+    background-color: var(--input-focus-clr);
+  }
+
   input[type="checkbox"] {
     accent-color: var(--accent-clr-1);
     transform: scale(1.2);
